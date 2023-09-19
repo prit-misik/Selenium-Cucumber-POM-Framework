@@ -4,8 +4,9 @@ Test automation framework using Selenium WebDriver with Cucumber,Java, TestNG an
 ====================================================================================================================================
 
 
-1. This project demonstrates POM framework and how it can be used 
-  in Selenium to automate any application. Maven is used as test framework.
+1. This project demonstrates Page Object Model Pattern and how it can be used 
+  in Selenium to automate any application. Maven is used as a test framework.
+  Also used a Factory Design Pattern to implement driver selection according to the browser requirement.
 
 2. For passing test data, and for separating test types Regression, Smoke Cucumber is utilized.
 

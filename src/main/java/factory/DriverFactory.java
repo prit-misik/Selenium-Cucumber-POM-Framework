@@ -7,7 +7,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import util.TestUtils;
 
-import java.sql.Driver;
 import java.util.HashMap;
 
 public final class DriverFactory {

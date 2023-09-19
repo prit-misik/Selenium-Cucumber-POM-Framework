@@ -1,20 +1,11 @@
 package base;
 
 import factory.DriverFactory;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import util.TestUtils;
 import util.WebEventListener;
-
-import java.util.HashMap;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class DriverSetUp {
 

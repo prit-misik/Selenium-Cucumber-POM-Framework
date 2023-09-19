@@ -16,7 +16,7 @@ public class Hooks extends DriverSetUp {
     @Before
     public void setUP() throws Exception {
         if (flag) {
-            DriverSetUp.intialize();
+            DriverSetUp.initialize();
             driver.get(map.get("browser"));
             flag = false;
         }

@@ -1,5 +1,6 @@
 package base;
 
+import factory.DriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -18,40 +19,28 @@ import java.util.concurrent.TimeUnit;
 public class DriverSetUp {
 
     public static WebDriver driver;
-    public static Properties prop = null;
     public static EventFiringWebDriver e_driver;
     public static WebEventListener eventListener = null;
     public static Logger APP_LOGS = null;
 
-    public static void intialize() {
+    public static void initialize() {
 
         APP_LOGS = LogManager.getLogger(DriverSetUp.class);
+        //get the needed driver according to the browser
+        driver = DriverFactory.getDriver(driver);
+        //Event Listener setting
+        driver = getEventListenerDriver(driver);
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        APP_LOGS.debug("Completed initialization");
+    }
 
-        HashMap<String, String> map = TestUtils.getPropFileValues();
-        if (map.get("browser").equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if (map.get("browser").equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-        } else if (map.get("browser").equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-        } else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        }
-
+    public static WebDriver getEventListenerDriver(WebDriver driver){
         e_driver = new EventFiringWebDriver(driver);
         eventListener = new WebEventListener();
         e_driver.register(eventListener);
         driver = e_driver;
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(TestUtils.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(TestUtils.IMPLICIT_WAIT, TimeUnit.SECONDS);
-        APP_LOGS.debug("Completed inialization");
-
+        return driver;
     }
 
     public static void closeBrowser() {

@@ -4,9 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
-    private DriverFactory(){
-    }
-
     public static WebDriver getDriver(String browser) {
 
         switch (browser) {

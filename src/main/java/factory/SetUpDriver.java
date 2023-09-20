@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class SetUpDriver extends DriverFactory{
 
     private SetUpDriver(){
-
     }
 
     public static WebDriver getDriverForChrome() {

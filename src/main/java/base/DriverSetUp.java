@@ -5,6 +5,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import util.TestUtils;
 import util.WebEventListener;
 
 public class DriverSetUp {
@@ -17,8 +18,9 @@ public class DriverSetUp {
     public static void initialize() {
 
         APP_LOGS = LogManager.getLogger(DriverSetUp.class);
-        //get the needed driver according to the browser
-        driver = DriverFactory.getDriver(driver);
+
+        //get the needed driver according to the browser name passed
+        driver = DriverFactory.getDriver(TestUtils.getPropFileValues().get("browser"));
         //Event Listener setting
         driver = getEventListenerDriver(driver);
         driver.manage().window().maximize();

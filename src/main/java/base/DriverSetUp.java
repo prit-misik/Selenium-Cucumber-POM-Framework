@@ -8,6 +8,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import util.TestUtils;
 import util.WebEventListener;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverSetUp {
 
     public static WebDriver driver;
@@ -25,6 +27,7 @@ public class DriverSetUp {
         driver = getEventListenerDriver(driver);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
+        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.MINUTES);
         APP_LOGS.debug("Completed initialization");
     }
 
@@ -38,7 +41,7 @@ public class DriverSetUp {
 
     public static void closeBrowser() {
         driver.quit();
-        APP_LOGS.info("Killed browser Successfully.");
+        APP_LOGS.info("Closed browser Successfully.");
     }
 
 }
